@@ -2,7 +2,8 @@
 
 ## Additional Resources
 
-[HOW TO - Regular Expressions in Python](https://docs.python.org/3/howto/regex.html)
+[Regular Expressions in Python (HOW TO)](https://docs.python.org/3/howto/regex.html)
+[Python Regular Expressions (Google for Education)](https://developers.google.com/edu/python/regular-expressions)
 
 ## What are Regular Expressions?
     - Editing text files is one of the most common tasks in computational biology
@@ -12,3 +13,4 @@
     - Regular expressions are often abbreviated as `regex`
     - Regular expression syntax can be used in a variety of different programs and contexts, including Atom, `grep`, and `sed`.
 
+## Simple Pattern Matching
