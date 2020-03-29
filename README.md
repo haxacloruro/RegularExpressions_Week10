@@ -3,6 +3,7 @@
 ## Additional Resources
 
 [Regular Expressions in Python (HOW TO)](https://docs.python.org/3/howto/regex.html)
+
 [Python Regular Expressions (Google for Education)](https://developers.google.com/edu/python/regular-expressions)
 
 ## What are Regular Expressions?
