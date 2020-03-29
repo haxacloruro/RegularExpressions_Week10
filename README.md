@@ -29,9 +29,7 @@ After importing `re`, you can search for a particular pattern of text in a strin
 The letter `r` that appears before the search pattern tells Python that you're searching for raw text. You'll pretty much always want to use it, so just get in the habit of having it there. If the pattern is found, the `search` function will return an `re.Match` object. If the pattern is not found, it will return the value `None`.  You can use this to execute an `if...else` statement
 
 ```
-myPattern = "ttt"
-myString = "aggtttcctttagttt"
-if re.search(myPattern,myString):
+if re.search(r"ttt","aggtttcctttagttt"):
     print("Pattern found!")
 else:
     print("Pattern not found!")
