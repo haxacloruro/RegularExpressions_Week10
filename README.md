@@ -15,4 +15,6 @@
 - Regular expressions are often abbreviated as `regex`
 - Regular expression syntax can be used in a variety of different programs and contexts, including Atom, `grep`, and `sed`.
 
+## Importing the `re` Module
+
 ## Simple Pattern Matching
