@@ -59,3 +59,14 @@ In this case, our search found the pattern "gtttc". However, take a look at the 
 match = re.search(r"g...c","attcgaagcaggtttcct")
 match.group()
 ```
+
+By default, `re.search()` looks for the _leftmost_ match. In other words, it starts at the left and works its way down the string until it finds a match, then it stops. If we want all the matches for our pattern in a string, we can use the `re.findall()` function.
+
+```
+allMatches = re.findall(r"g...c","attcgaagcaggtttcct")
+print(allMatches)
+```
+
+`re.findall()` returns a list of strings, where each element is a separate match from our search.
+
+There are many other wildcard characters beyond `.`.
