@@ -137,3 +137,31 @@ Repetition characters can also be used in combination with wildcards.
 match = re.search(r"C.+G","GCTTTGGAAAGG")
 match.group()
 ```
+
+## Capturing Text from Searches
+
+In the examples above, we looked at search output that matched the entire pattern used in our search. However, in many cases we want to capture specific portions of text that are embedded in our larger pattern. For instance, maybe we're interested in the two nucleotides that come just before or after stretches of 2 or more As. To capture just those characters, we can wrap them in parentheses.
+
+```
+match = re.search(r"(\w\w)AA+(\w\w)","GCTTTGCAAAAAGG")
+match.group()
+```
+
+Note that the search and the output produced by `.group()` look just like they would without the parentheses. However, the parentheses allow us to go back and look at just those sections we captured. To do this, we use the `.groups()` method from our result
+
+`match.groups()`
+
+In cases like this where we've captured more than one set of characters, we can index the results from `.groups()` to look at specific character sets. For instance, to look at the two nucleotides that came _before_ the stretch of As, we could use
+
+`match.groups()[0]`
+
+We can also use this ability to capture text with `re.findall()`. In this case, instead of returning a list of matches for our search pattern, it will return a list of tuples, where each tuple contains the subsets that we've captured for that match.
+
+```
+matches = re.findall(r"(\w\w)AA+(\w\w)","GCTTTGCAAAAAGGTCTTAGAAAAATG")
+print(matches)
+```
+
+We can access the captured results for particular matches by indexing the result from `.findall()`. For instance, to look at the text captured for the 2nd match, we can use
+
+`matches[1]`.
