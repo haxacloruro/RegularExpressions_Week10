@@ -40,3 +40,22 @@ The other function from `re` that we'll need to use a lot is `re.sub()`. This su
 `re.sub("ttt","TTT","aggtttcctttagttt")`
 
 ## Simple Pattern Matching
+
+The simplest types of patterns that you can work with using regular expressions are literal strings of characters, as in typical find-and-replace operations you've probably done in a text editor or word processing program. The example we've already used of a precise pattern of nucleotides in a DNA sequence uses the literal string "ttt" as a search pattern.
+
+`re.search(r"ttt","aggtttcctttagttt")`
+
+Literal patterns are very useful in many contexts, but the real power of regex comes from its flexibility. For instance, let's say that we wanted to search for any part of the sequence where there is a g, then any 3 nucleotides, then a c. In this case, we don't care what the intervening 3 nucleotides are, so we can use a wildcard character that could match any of them. The simplest regex wildcard is `.`, which matches any character other than a newline. Now, our search is
+
+`match = re.search(r"g...c","aggtttcctttagttt")`
+
+If we store the output of our regex search in a variable (in this case, called `match`), we can take a look at the actual sequence that matched our pattern by using the `.group()` method of the object that was returned from our search.
+
+`match.group()`
+
+In this case, our search found the pattern "gtttc". However, take a look at the same search, but with a different sequence this time
+
+```
+match = re.search(r"g...c","attcgaagcaggtttcct")
+match.group()
+```
