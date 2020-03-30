@@ -14,6 +14,10 @@
 - Regular expressions are often abbreviated as `regex`.
 - Regular expression syntax can be used in a variety of different programs and contexts, including Python, Sublime, `grep`, and `sed`.
 
+## Regex Tutorial Jupyter Notebook
+
+All of the example code that follows can be found in the `regexTutorial` Jupyter notebook in this repository.
+
 ## Importing and Using the `re` Module
 
 The `re` module gives us the ability to use regular expression syntax in Python code. To use this functionality, we'll need to start by importing it
@@ -39,7 +43,7 @@ The other function from `re` that we'll need to use a lot is `re.sub()`. This su
 
 `re.sub("ttt","TTT","aggtttcctttagttt")`
 
-## Simple Pattern Matching
+## Basic Pattern Matching
 
 The simplest types of patterns that you can work with using regular expressions are literal strings of characters, as in typical find-and-replace operations you've probably done in a text editor or word processing program. The example we've already used of a precise pattern of nucleotides in a DNA sequence uses the literal string "ttt" as a search pattern.
 
@@ -70,3 +74,25 @@ print(allMatches)
 `re.findall()` returns a list of strings, where each element is a separate match from our search.
 
 There are many other wildcard characters beyond `.`.
+
+`\w` - Matches a 'word' character, which includes all letters (both uppercase and lowercase) and numbers
+`\s` - Matches a whitespace character, including spaces, tabs, and newlines
+`\t` - Matches a tab
+`\n` - Matches a newline
+`\d` - Matches a number (0-9).
+`^` - Matches the beginning of the string
+`$` - Matches the end of the string
+
+See the tutorial Jupyter notebook for examples that use these wildcards.
+
+Often, using an uppercase letter in place of a lowercase letter reverses the nature of the wildcard. For instance, `\S` matches any __non__-whitespace character and `\W` matches any __non__-word character.
+
+Sometimes you actually want to search for the literal version of a special character. For instance, let's say we're trying to find a dollar sign - `$`. By default, regex will interpret this character as indicating the end of our string. However, we can "escape" the special nature of `$` by adding a `\` before it. Therefore, `\` is often referred to as the "escape character".
+
+```
+match = re.search(r"\$\d","I have $1.")
+match.group()
+```
+
+## Searches with Repetition
+
