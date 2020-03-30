@@ -131,6 +131,16 @@ matchTwo = re.search(r"GT*G","GCTTTGGAAAGG")
 matchTwo.group()
 ```
 
+To match either 0 or 1 instances of a character, but no more, we can use `?`.
+
+```
+matchOne = re.search(r"GC?T","GCTTTGGAAAGG")
+matchOne.group()
+
+matchTwo = re.search(r"TC?T","GCTTTGGAAAGG")
+matchTwo.group()
+```
+
 Repetition characters can also be used in combination with wildcards.
 
 ```
@@ -176,4 +186,12 @@ re.sub(r"(\w\w)(AA+)(\w\w)",r"\1|\2|\3","GCTTTGCAAAAAGGTCTTAGAAAAATG")
 
 ## Searches and Substitutions in a File
 
+In many cases, we want to search through an entire file and find all instances of a particular pattern (or maybe do a substitution on all those instances). With Python, this is actually really straightforward. We start by opening up a file object for reading, like we've done before
 
+`inFile = open("inFileName.txt",'r')`
+
+Then, we can just replace the string to be searched with the `.read()` method from our file object
+
+`matches = re.findall(r"(\w\w)(AA+)(\w\w)",inFile.read())`
+
+Now, the `.findall()` function will search through the entire input file. However, note that now the `^` and `$` symbols apply to the very beginning and ending of the entire file, respectively.
