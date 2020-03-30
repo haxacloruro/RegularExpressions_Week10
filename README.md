@@ -71,11 +71,17 @@ print(allMatches)
 There are many other wildcard characters beyond `.`.
 
 `\w` - Matches a 'word' character, which includes all letters (both uppercase and lowercase) and numbers
+
 `\s` - Matches a whitespace character, including spaces, tabs, and newlines
+
 `\t` - Matches a tab
+
 `\n` - Matches a newline
+
 `\d` - Matches a number (0-9).
+
 `^` - Matches the beginning of the string
+
 `$` - Matches the end of the string
 
 See the tutorial Jupyter notebook for examples that use these wildcards.
