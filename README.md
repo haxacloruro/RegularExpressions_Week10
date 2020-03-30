@@ -36,7 +36,7 @@ else:
 
 The other function from `re` that we'll need to use a lot is `re.sub()`. This substitution function allows us to conduct find-and-replace. The general syntax is `re.sub(<findPattern>,<replacePattern>,<string>)`.
 
-`re.sub("ttt","TTT","aggtttcctttagttt")`
+`re.sub(r"ttt",r"TTT","aggtttcctttagttt")`
 
 ## Basic Pattern Matching
 
