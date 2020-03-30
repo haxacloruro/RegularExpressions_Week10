@@ -87,6 +87,15 @@ See the tutorial Jupyter notebook for examples that use these wildcards.
 
 Often, using an uppercase letter in place of a lowercase letter reverses the nature of the wildcard. For instance, `\S` matches any __non__-whitespace character and `\W` matches any __non__-word character.
 
+You can also create any custom wildcard that you want by putting the characters that you want to match inside square brackets. For example, here we're using wildcards to match an even number followed by an odd number. Note that the brackets themselves are __not__ part of the search. 
+
+```
+match = re.search(r"[2,4,6,8][1,3,5,7,9]","1249787")
+match.group()
+```
+
+## Escaping Special Characters
+
 Sometimes you actually want to search for the literal version of a special character. For instance, let's say we're trying to find a dollar sign - `$`. By default, regex will interpret this character as indicating the end of our string. However, we can "escape" the special nature of `$` by adding a `\` before it. Therefore, `\` is often referred to as the "escape character".
 
 ```
@@ -96,3 +105,35 @@ match.group()
 
 ## Searches with Repetition
 
+Wildcards add a huge amount of flexibility to our searches, but so far we've still had to list as many characters in our pattern as we want to match in our string. What if some characters repeat themselves, perhaps an unknown number of times?
+
+To match one or more instances of a character, we can use `+`. Here, we're looking for a string of As
+
+```
+match = re.search(r"A+","GCTTTGGAAAGG")
+match.group()
+```
+
+To match a specific number of instances of a character, we can put the specific number inside curly braces
+
+```
+match = re.search(r"A{2}","GCTTTGGAAAGG")
+match.group()
+```
+
+To match _zero_ or more instances of a character, we can use `*`. To get a feel for how `*` works, compare the outputs from the following two searches
+
+```
+matchOne = re.search(r"CT*G","GCTTTGGAAAGG")
+matchOne.group()
+
+matchTwo = re.search(r"GT*G","GCTTTGGAAAGG")
+matchTwo.group()
+```
+
+Repetition characters can also be used in combination with wildcards.
+
+```
+match = re.search(r"C.+G","GCTTTGGAAAGG")
+match.group()
+```
