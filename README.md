@@ -165,3 +165,15 @@ print(matches)
 We can access the captured results for particular matches by indexing the result from `.findall()`. For instance, to look at the text captured for the 2nd match, we can use
 
 `matches[1]`.
+
+## Substitution with Captured Text
+
+If you want to conduct a substitution (i.e., find-and-replace), you can use the text that you capture in parentheses. All you need to do is to use the special characters `\1`, `\2`, etc. to indicate the different sections that you captured during your search.
+
+```
+re.sub(r"(\w\w)(AA+)(\w\w)",r"\1|\2|\3","GCTTTGCAAAAAGGTCTTAGAAAAATG")
+```
+
+## Searches and Substitutions in a File
+
+
