@@ -1,11 +1,13 @@
 # Regular Expressions in Python
 
-## NOTE (3.31.20 - 10:30 AM) - I am trying to send an email that outlines how our class will work for the rest of the semester, but Moodle has ground to a halt this morning. I will send this email as soon as possible. In the meantime, please start working through the new material in this week's repository.
-
 ## Additional Resources
 
 - [Regular Expressions in Python (HOW TO)](https://docs.python.org/3/howto/regex.html)
 - [Python Regular Expressions (Google for Education)](https://developers.google.com/edu/python/regular-expressions)
+
+## Week 10 Assignment
+
+The assignment for this week can be found in the `regexCovidAssignment.ipynb` Jupyter notebook in this repository. I encourage you to read through this week's notes and start on the assignment as soon as possible. The assignment will be due Monday, April 6th, by 5 PM.
 
 ## What are Regular Expressions (regex)?
     
