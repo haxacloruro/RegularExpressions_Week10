@@ -1,0 +1,173 @@
+#Areen Sittichot
+$Assignment for Week 10
+
+#################################################
+#This assignment will give you practice with regular expressions (and other Python skills) by processing data on cumulative case counts and deaths in every county/parish in the US for covid-19. These data are compiled and updated regulary by the NY Times, and made available on GitHub: https://github.com/nytimes/covid-19-data. I downloaded the data on March 30th and have included that file (covidData_3.30.20.txt) in this week's repository.
+#Each cell in this Jupyter notebook includes a comment that indicates what I want you to accomplish with Python code. To submit your assignment, please create your own folder (with your name) inside the assignments folder for this week. In this folder, please put the completed notebook and the new files you created. Please submit these via a pull request to the class GitHub page, as with previous weeks.
+#If you have any questions at all, please let me know. I will be available for office hours via Zoom at our regularly scheduled class times. I'll also respond to all emails as quickly as possible.
+#This assignment will be due by 5 PM next Monday, April 6th.
+################################################
+
+# Load the re module
+​
+import re
+
+# Create a file object to read from the covid data file
+# This file contains cumulative case counts and deaths from 
+# covid-19 for every country in the US. It was current as of
+# March 30th.
+
+covidData = open("covidData_3.30.20.txt", 'r')
+
+# Find all parishes from Louisiana in this file.
+# You should make a list that contains only the parish
+# names. This list can be created with a single command.
+# Be careful to include ALL the parishes in your search.
+louisianaParishes = re.findall(r",(.+),Louisiana",covidData.read())
+print(louisianaParishes)
+
+['Jefferson', 'Jefferson', 'Orleans', 'Caddo', 'Jefferson', 'Orleans', 'Caddo', 'Jefferson', 'Orleans', 'Caddo', 'Jefferson', 'Orleans', 'St. Charles', 'St. Tammany', 'Terrebonne', 'Bossier', 'Caddo', 'Jefferson', 'Lafourche', 'Orleans', 'St. Charles', 'St. John the Baptist', 'St. Tammany', 'Terrebonne', 'Bossier', 'Caddo', 'Jefferson', 'Lafourche', 'Orleans', 'St. Bernard', 'St. Charles', 'St. John the Baptist', 'St. Tammany', 'Terrebonne', 'Ascension', 'Bossier', 'Caddo', 'Jefferson', 'Lafourche', 'Orleans', 'St. Bernard', 'St. Charles', 'St. John the Baptist', 'St. Tammany', 'Terrebonne', 'Ascension', 'Bossier', 'Caddo', 'East Baton Rouge', 'Jefferson', 'Lafourche', 'Orleans', 'St. Bernard', 'St. Charles', 'St. John the Baptist', 'St. Tammany', 'Terrebonne', 'Washington', 'Ascension', 'Bossier', 'Caddo', 'East Baton Rouge', 'Jefferson', 'Lafourche', 'Orleans', 'St. Bernard', 'St. Charles', 'St. John the Baptist', 'St. Tammany', 'Terrebonne', 'Unknown', 'Washington', 'Ascension', 'Assumption', 'Bossier', 'Caddo', 'Calcasieu', 'East Baton Rouge', 'Iberia', 'Iberville', 'Jefferson', 'Lafayette', 'Lafourche', 'Livingston', 'Orleans', 'Plaquemines', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Tammany', 'Terrebonne', 'Unknown', 'Washington', 'Webster', 'West Baton Rouge', 'Ascension', 'Assumption', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'De Soto', 'East Baton Rouge', 'Iberia', 'Iberville', 'Jefferson', 'Lafayette', 'Lafourche', 'Livingston', 'Orleans', 'Plaquemines', 'Rapides', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Unknown', 'Washington', 'Webster', 'West Baton Rouge', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'Evangeline', 'Iberia', 'Iberville', 'Jefferson', 'Lafayette', 'Lafourche', 'Livingston', 'Orleans', 'Ouachita', 'Plaquemines', 'Rapides', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Unknown', 'Washington', 'Webster', 'West Baton Rouge', 'Acadia', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'Evangeline', 'Iberia', 'Iberville', 'Jefferson', 'Lafayette', 'Lafourche', 'Livingston', 'Orleans', 'Ouachita', 'Plaquemines', 'Rapides', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Unknown', 'Washington', 'Webster', 'West Baton Rouge', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'Evangeline', 'Grant', 'Iberia', 'Iberville', 'Jefferson', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Rapides', 'Richland', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Unknown', 'Washington', 'Webster', 'West Baton Rouge', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'Evangeline', 'Grant', 'Iberia', 'Iberville', 'Jefferson', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Rapides', 'Richland', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Unknown', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'Evangeline', 'Grant', 'Iberia', 'Iberville', 'Jackson', 'Jefferson', 'Jefferson Davis', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Morehouse', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Rapides', 'Richland', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Union', 'Unknown', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'Winn', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'East Feliciana', 'Evangeline', 'Grant', 'Iberia', 'Iberville', 'Jackson', 'Jefferson', 'Jefferson Davis', 'LaSalle', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Madison', 'Morehouse', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Pointe Coupee', 'Rapides', 'Richland', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Union', 'Unknown', 'Vermilion', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'Winn', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'East Feliciana', 'Evangeline', 'Grant', 'Iberia', 'Iberville', 'Jackson', 'Jefferson', 'Jefferson Davis', 'LaSalle', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Madison', 'Morehouse', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Pointe Coupee', 'Rapides', 'Richland', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Union', 'Unknown', 'Vermilion', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'West Feliciana', 'Winn', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'East Carroll', 'East Feliciana', 'Evangeline', 'Franklin', 'Grant', 'Iberia', 'Iberville', 'Jackson', 'Jefferson', 'Jefferson Davis', 'LaSalle', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Madison', 'Morehouse', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Pointe Coupee', 'Rapides', 'Richland', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Union', 'Unknown', 'Vermilion', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'West Feliciana', 'Winn', 'Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 'Bossier', 'Caddo', 'Calcasieu', 'Caldwell', 'Catahoula', 'Claiborne', 'De Soto', 'East Baton Rouge', 'East Carroll', 'East Feliciana', 'Evangeline', 'Franklin', 'Grant', 'Iberia', 'Iberville', 'Jackson', 'Jefferson', 'Jefferson Davis', 'LaSalle', 'Lafayette', 'Lafourche', 'Lincoln', 'Livingston', 'Madison', 'Morehouse', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Pointe Coupee', 'Rapides', 'Red River', 'Richland', 'Sabine', 'St. Bernard', 'St. Charles', 'St. James', 'St. John the Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Terrebonne', 'Union', 'Unknown', 'Vermilion', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'West Feliciana', 'Winn']
+covidData.close()
+# Close the covid data file object
+covidData.close()
+
+# Print out the Louisiana search results
+"\n",
+print(louisianaParishes)
+
+# Create a dictionary that has the Louisiana parish 
+# names as keys and the number of times they appear 
+# in the data file as values.
+
+# Hint: You can test if a dictionary does or does not
+# contain a certain key using:
+# myKey in myDict --or-- myKey not in myDict
+
+parishDictionary = {}
+for p in louisianaParishes: 
+    if (p not in parishDictionary):
+        parishDictionary[p] = 1
+    
+    elif (p in parishDictionary):
+        parishDictionary[p] +=1
+        
+print(parishDictionary)
+
+{'Jefferson': 21, 'Orleans': 20, 'Caddo': 19, 'St. Charles': 17, 'St. Tammany': 17, 'Terrebonne': 17, 'Bossier': 16, 'Lafourche': 16, 'St. John the Baptist': 16, 'St. Bernard': 15, 'Ascension': 14, 'East Baton Rouge': 13, 'Washington': 13, 'Unknown': 12, 'Assumption': 11, 'Calcasieu': 11, 'Iberia': 11, 'Iberville': 11, 'Lafayette': 11, 'Livingston': 11, 'Plaquemines': 11, 'St. James': 11, 'St. Landry': 11, 'Webster': 11, 'West Baton Rouge': 11, 'Catahoula': 10, 'De Soto': 10, 'Rapides': 10, 'Tangipahoa': 10, 'Avoyelles': 9, 'Beauregard': 9, 'Bienville': 9, 'Claiborne': 9, 'Evangeline': 9, 'Ouachita': 9, 'St. Mary': 9, 'Acadia': 8, 'Allen': 7, 'Grant': 7, 'Lincoln': 7, 'Natchitoches': 7, 'Richland': 7, 'St. Martin': 7, 'Vernon': 6, 'Jackson': 5, 'Jefferson Davis': 5, 'Morehouse': 5, 'Union': 5, 'Winn': 5, 'East Feliciana': 4, 'LaSalle': 4, 'Madison': 4, 'Pointe Coupee': 4, 'Vermilion': 4, 'West Feliciana': 3, 'East Carroll': 2, 'Franklin': 2, 'Caldwell': 1, 'Red River': 1, 'Sabine': 1}
+
+# Using your dictionary, figure out which of these parishes has
+# the most entries in the file. The one with the most entries
+# had the earliest observed covid case.
+# Jefferson, Orleans, East Baton Rouge, Plaquemines
+​
+sorted (parishDictionary.items(), key=lambda x: x[1], reverse=True)
+[('Jefferson', 21),
+ ('Orleans', 20),
+ ('Caddo', 19),
+ ('St. Charles', 17),
+ ('St. Tammany', 17),
+ ('Terrebonne', 17),
+ ('Bossier', 16),
+ ('Lafourche', 16),
+ ('St. John the Baptist', 16),
+ ('St. Bernard', 15),
+ ('Ascension', 14),
+ ('East Baton Rouge', 13),
+ ('Washington', 13),
+ ('Unknown', 12),
+ ('Assumption', 11),
+ ('Calcasieu', 11),
+ ('Iberia', 11),
+ ('Iberville', 11),
+ ('Lafayette', 11),
+ ('Livingston', 11),
+ ('Plaquemines', 11),
+ ('St. James', 11),
+ ('St. Landry', 11),
+ ('Webster', 11),
+ ('West Baton Rouge', 11),
+ ('Catahoula', 10),
+ ('De Soto', 10),
+ ('Rapides', 10),
+ ('Tangipahoa', 10),
+ ('Avoyelles', 9),
+ ('Beauregard', 9),
+ ('Bienville', 9),
+ ('Claiborne', 9),
+ ('Evangeline', 9),
+ ('Ouachita', 9),
+ ('St. Mary', 9),
+ ('Acadia', 8),
+ ('Allen', 7),
+ ('Grant', 7),
+ ('Lincoln', 7),
+ ('Natchitoches', 7),
+ ('Richland', 7),
+ ('St. Martin', 7),
+ ('Vernon', 6),
+ ('Jackson', 5),
+ ('Jefferson Davis', 5),
+ ('Morehouse', 5),
+ ('Union', 5),
+ ('Winn', 5),
+ ('East Feliciana', 4),
+ ('LaSalle', 4),
+ ('Madison', 4),
+ ('Pointe Coupee', 4),
+ ('Vermilion', 4),
+ ('West Feliciana', 3),
+ ('East Carroll', 2),
+ ('Franklin', 2),
+ ('Caldwell', 1),
+ ('Red River', 1),
+ ('Sabine', 1)]
+# Figure out how many parishes are in the dictionary. 
+​
+numParishInDictionary = len(parishDictionary)
+print(numParishInDictionary)
+​
+# How does this compare to the total number of parishes in the state?
+​
+60
+There are are total of 64 parishes in the state of Louisiana. 60 of these parishes have documented cases of Covid19.
+
+# Now, reopen the data file and use a regex search to find the first instance where a Louisiana parish recorded a covid-19 death. This will be the first 
+# line in the file that includes Louisiana and has a death count >0. After 
+# your search, print the date and the parish. Be sure to also close the input file.
+​
+covidData = open("covidData_3.30.20.txt", 'r')
+firstInstance= re.search(r"(.+),(.+),Louisiana,.+,.+,1", covidData.read())
+​
+print("{} parish reported the first covid-19 death in Louisiana on {}" .format(firstInstance.groups()[1], firstInstance.groups()[0]))
+​
+covidData.close()
+Orleans parish reported the first covid-19 death in Louisiana on 2020-03-14
+
+# Now we need to create a new file that only has records from Louisiana. 
+# Extract the lines that pertain to Louisiana and write them to a new file.
+covidData = open("covidData_3.30.20.txt", 'r')
+LAlines = re.findall(r".+,Louisiana,.+", covidData.read())
+covidData.close()
+​
+LAfile = open("LAfile.txt",'w')
+for line in LAlines:
+    LAfile.write(line+'')     
+LAfile.close()   
+# Lastly, let's imagine that we want to do further downstream analyses with
+# the Louisiana data, but our downstream analyses require some formatting chanages.
+# Read in the lines from your newly created file with only Louisiana records, reformat them, 
+# and create a separate file to hold the newly formatted information. Specifically, the 
+# dates in the file should be reformatted from looking like this (2020-MM-DD) to looking 
+# like this (MM.DD.2020). Also, the fips codes (in the 4th column) should be removed, and
+# Louisiana should be abbreviated as LA. So, this file should end up with entries that look
+# like this: 03.25.2020,Morehouse,LA,1,0
+​
+LAfile = open("LAfile.txt",'r')
+formatLines = re.findall(r"(.+)-(.+)-(.+),(.+),.+,.+,(.+),(.+)", LAfile.read())
+LAfile.close()
+​
+LAfileReformat = open("LAfileReformat.txt", 'w')
+for line in formatLines:
+    LAfileReformat.write("{}.{}.{},{},LA,{},{}".format(line[1],line[2],line[0],line[3],line[4],line[5]) + '')
+LAfileReformat.close()
+​
