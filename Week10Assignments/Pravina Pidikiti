@@ -1,0 +1,104 @@
+# Load the re module
+import re 
+
+# Create a file object to read from the covid data file
+# This file contains cumulative case counts and deaths from 
+# covid-19 for every country in the US. It was current as of
+# March 30th.
+
+covidData = open("covidData_3.30.20.txt", "r")
+
+# Find all parishes from Louisiana in this file.
+# You should make a list that contains only the parish
+# names. This list can be created with a single command.
+# Be careful to include ALL the parishes in your search.
+
+parishList = re.findall(r".+,(.+),Louisiana,.+",covidData.read())
+
+# Close the covid data file object
+covidData.close()
+
+# Print out the Louisiana search results
+print(parishList)
+
+# Create a dictionary that has the Louisiana parish 
+# names as keys and the number of times they appear 
+# in the data file as values.
+# Hint: You can test if a dictionary does or does not
+# contain a certain key using:
+# myKey in myDict --or-- myKey not in myDict
+
+parishDict = {}
+for p in parishes:
+    if p not in parishDict:
+        parishDict.update({p:1})
+    elif p in parishDict:
+       parishDict[p] += 1 #increase number due to parish occuring more than once in the list 
+    print(parishDict)
+
+# Using your dictionary, figure out which of these parishes has
+# the most entries in the file. The one with the most entries
+# had the earliest observed covid case.
+# Jefferson, Orleans, East Baton Rouge, Plaquemines
+
+"parishList2 = ["Jefferson", "Orleans", "East Baton Rouge", "Plaquemines"]
+maxEntries = 0
+for i in parishList2:
+    if parishDict[i] > maxEntries:  #comparing entries 
+        maxEntries = parishDict[i]
+print(maxEntries)
+
+# Figure out how many parishes are in the dictionary. How does 
+# this compare to the total number of parishes in the state?
+
+total = 64
+dictSize = len(parishDict)
+remainingParishes = total - dictSize 
+
+if dictSize > remainingParishes:
+    print("there are more parishes affected with COVID in Louisiana")
+elif dictSize < remainingParishes:
+    print("there are more parishes unaffected with COVID in Louisiana")
+else: 
+    print("there are equal number or parishes affected and unaffected with COVID in Louisiana")
+    
+# Now, reopen the data file and use a regex search to find the first instance 
+# where a Louisiana parish recorded a covid-19 death. This will be the first 
+# line in the file that includes Louisiana and has a death count >0. After 
+# your search, print the date and the parish. Be sure to also close the input file.
+# Example output: ZZZZ parish reported the first covid-19 death in Louisiana on 2020-ZZ-ZZ
+
+covidData = open("covidData_3.30.20.txt", "r")
+deathMatch = re.search(r"(.+),(.+),Louisiana,.+,.+,1",covidData.read())
+line = deathMatch.groups()
+print("{} parish reported the first Covid-19 death in Louisiana on {}".format(line[1],line[0]))
+covidData.close()
+
+# Now we need to create a new file that only has records from Louisiana. 
+# Extract the lines that pertain to Louisiana and write them to a new file.
+
+covidData = open("covidData_3.30.20.txt", "r")
+laCovidData = re.findall(r".+,(.+),Louisiana,.+",covidData.read()) 
+laCovidFile =open("/home/pspidikiti/covidfiles/laCovidFile.txt", "w")  #create new file 
+laCovidFile.writelines(laCovidData)  #insert only data from Lousisana 
+covidData.close()
+laCovidFile.close()
+
+# Lastly, let's imagine that we want to do further downstream analyses with
+# the Louisiana data, but our downstream analyses require some formatting chanages.
+# Read in the lines from your newly created file with only Louisiana records, reformat them, 
+# and create a separate file to hold the newly formatted information. Specifically, the 
+# dates in the file should be reformatted from looking like this (2020-MM-DD) to looking 
+# like this (MM.DD.2020). Also, the fips codes (in the 4th column) should be removed, and
+# Louisiana should be abbreviated as LA. So, this file should end up with entries that look
+# like this: 03.25.2020,Morehouse,LA,1,0
+
+
+laCoviFile = open("NewLAFile.txt","r")
+refDates =re.findall(r"(.+)-(.+)-(.+),(.+),.+,.+,(.+),(.+)", NewLAFile.read())
+laCovidFile.close()
+
+RefLAFile = open("/home/pspidikiti/CovidFiles/RefLAFile.txt","w")
+for line in refDates:
+    RefLAFile.write("{}.{}.{},{},LA,{},{}".format(line[1],line[2],line[0],line[3], line[4], line[5]) + '')
+RefLAFile.close() 
